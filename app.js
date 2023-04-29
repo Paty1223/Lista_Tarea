@@ -2,11 +2,19 @@ const textInputField = document.querySelector('#text-input-field');
 const agregarButton = document.querySelector('#agregar-button');
 const todosContainer = document.querySelector('.todos-container');
 
-agregarButton.addEventListener('click', ()=> {
-if (textInputField.value.trim().length == '')
-    return;
-    
 
+agregarButton.addEventListener('click', ()=> {
+    if (textInputField.value.trim().length == '')
+        return;
+    
+    const todos = document.querySelectorAll("div p");
+
+    for (let index = 0; index < todos.length; index++) {
+        if(todos[index].textContent == textInputField.value){
+            
+            return alert('tarea repetida');
+        }
+    }   
 
     
     const todoItemContainer = document.createElement('div');
@@ -49,15 +57,15 @@ if (textInputField.value.trim().length == '')
     eliminarButton.addEventListener('click',()=>{
         const parent = eliminarButton.parentElement;
         parent.parentElement.removeChild(parent);
-
-    carrito.children[carrito.children.length-1].children[3].innerHTML=""
     });
-    
-
-
-
 
 
     textInputField.value = "";
 
+});
+
+textInputField.addEventListener('keyup',()=>{
+    console.log(textInputField.value);
+    const todos = document.querySelectorAll("div p")
+    console.log(todos);
 });
